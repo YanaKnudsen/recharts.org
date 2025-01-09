@@ -56,7 +56,8 @@ class Frame extends Component {
 
     return (
       <div className="container">
-        <Helmet titleTemplate="%s | Recharts" />
+        {children}
+        {/* <Helmet titleTemplate="%s | Recharts" />
         <Affix>
           <header>
             <div className="header-wrapper">
@@ -99,7 +100,7 @@ class Frame extends Component {
             </a>
           </p>
           <p>Copyright (c) 2016-{new Date().getFullYear()} Recharts Group</p>
-        </footer>
+        </footer>*/}
       </div>
     );
   }

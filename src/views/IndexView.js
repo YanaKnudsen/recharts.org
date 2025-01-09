@@ -61,8 +61,8 @@ class IndexView extends PureComponent {
     `;
 
     return (
-      <div className="page page-index">
-        <div className="desc">
+      <div className="page">
+        <div className="section desc">
           <p className="title">Recharts</p>
           <p className="subtitle">{localeGet(locale, 'home', 'slogan')}</p>
           <p>
@@ -82,32 +82,32 @@ class IndexView extends PureComponent {
             height="22px"
           />
         </div>
-
-        <div className="examples">
-          <div className="ex-code">
-            <LineChart
-              width={500}
-              height={300}
-              data={data}
-              margin={{
-                top: 5,
-                right: 5,
-                bottom: 5,
-                left: 0,
-              }}
-            >
-              <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-              <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
-            </LineChart>
-            <Highlight className="e4x">{exCode}</Highlight>
+        <div className="section example">
+            <div className="ex-code">
+                <div className="chart">
+                    <LineChart
+                        width={500}
+                        height={300}
+                        data={data}
+                        margin={{
+                            top: 5,
+                            right: 5,
+                            bottom: 5,
+                            left: 0,
+                        }}
+                    >
+                        <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+                        <XAxis dataKey="name"/>
+                        <YAxis/>
+                        <Line type="monotone" dataKey="uv" stroke="#8884d8"/>
+                        <Line type="monotone" dataKey="pv" stroke="#82ca9d"/>
+                    </LineChart>
+                </div>
+                  <Highlight className="e4x">{exCode}</Highlight>
           </div>
         </div>
-
-        <div className="features block">
-          <h2 className="block-title">{localeGet(locale, 'home', 'feature')}</h2>
+        <div className="section features">
+          <h2 className="title">{localeGet(locale, 'home', 'feature')}</h2>
           <ul className="feat">
             <li>
               <i className="icon-puzzle" />
@@ -126,9 +126,8 @@ class IndexView extends PureComponent {
             </li>
           </ul>
         </div>
-
-        <div className="who block">
-          <h2 className="block-title">{localeGet(locale, 'home', 'whoUse')}</h2>
+        <div className="section who">
+          <h2 className="title">{localeGet(locale, 'home', 'whoUse')}</h2>
 
           <ul className="users">
             {users.map((entry, index) => (
@@ -152,8 +151,7 @@ class IndexView extends PureComponent {
             <p>{localeGet(locale, 'home', 'logoSize')}</p>
           </div>
         </div>
-
-        <div className="like block">
+        <div className="section like">
           <i className="icon-rocket" />
           <p className="text">{localeGet(locale, 'home', 'like')}</p>
           <p className="btn">
