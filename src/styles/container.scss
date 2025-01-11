@@ -1,20 +1,36 @@
 .container {
   width: 100%;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+          "header header"
+          "sidebar content";
+  max-height: 100vh;
+  &.sidebar-hidden{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+          "header"
+          "content";
+  }
 }
 
-header {
-  width: 100%;
+
+header{
+  min-width: 100dvw;
   background-color: #fcfcfc;
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
-
+  grid-area: header;
   .header-wrapper {
-    min-width: 1200px;
+    width: 100%;
     height: 60px;
-    line-height: 60px;
-    margin: 0 auto;
-    @include clearfix;
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+    justify-content: space-between;
+    align-items: center;
   }
-
   .logo {
     float: left;
     width: 132px;
@@ -29,20 +45,13 @@ header {
     }
   }
 
-  nav {
-    @include clearfix;
-    height: 60px;
-    line-height: 60px;
-  }
-
   .nav {
+    display: flex;
+    flex-direction: row;
+    gap:15px;
     > li {
-      float: left;
-      padding: 0 20px;
-
+      padding:7px;
       > a {
-        display: inline-block;
-        height: 61px;
         font-size: $font-size-lg;
 
         &.active {
@@ -52,12 +61,17 @@ header {
         }
       }
     }
-
+  }
+  .links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
     > .github-wrapper,
     > .language-switch-wrapper {
       float: right;
     }
-
     .language-switch {
       .switch-item {
         cursor: pointer;
@@ -66,6 +80,21 @@ header {
           color: $brand-primary;
         }
       }
+    }
+  }
+  .mobileNav{
+    display: flex;
+  }
+  @media (orientation: portrait) {
+
+    .links{
+      display: none;
+    }
+    .nav{
+      display: none;
+    }
+    .mobileNav{
+      display: flex;
     }
   }
 }
@@ -80,19 +109,91 @@ footer {
   }
 }
 
+
+.main{
+  grid-area: content;
+}
+
+  .sidebar {
+    grid-area: sidebar;
+    border-right: rgba(0,0,0,0.25) solid;
+    box-shadow: 10px 0 5px -2px rgba(0,0,0,0.25);
+    .devider{
+      background-color: $gray-lightest;
+      height: 1px;
+      width: 90%;
+      justify-self: center;
+    }
+    .sidebarLink{
+      padding: 17px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    &.hidden{
+      display: none;
+    }
+    > li {
+      padding:17px;
+
+      > a {
+        font-size: $font-size-lg;
+
+        &.active {
+          color: $brand-primary;
+          cursor: default;
+        }
+      }
+    }
+
+    }
+
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); // Semi-transparent black
+    z-index: 4; // Below the sidebar
+    display: none;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &.active {
+      display: block;
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+
+@media (orientation: portrait) {
+
+  .main{
+    grid-template-columns:auto 250px ;
+    grid-template-areas: "content sidebar";
+  }
+
+
+}
+
+
+
 .page {
   min-height: 400px;
 
   > .sidebar {
-    position: fixed;
-    top: 60px;
-    bottom: 0;
-    width: 280px;
-    padding-top: 30px;
-    padding-left: 20px;
-    overflow: auto;
-    z-index: 1;
-    background: #fff;
+   // background-color: #2e96ea;
+    //position: fixed;
+   // top: 60px;
+   // bottom: 0;
+   // width: 280px;
+   // padding-top: 30px;
+   // padding-left: 20px;
+  //  overflow: auto;
+    //z-index: 1;
+    //background: #fff;
 
     .sidebar-cate {
       > h2 {

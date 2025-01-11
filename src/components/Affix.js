@@ -113,6 +113,7 @@ class Affix extends PureComponent {
         ref={(node) => {
           this.placeholderDom = node;
         }}
+
       >
         <div className={classes} style={affixStyle}>
           {this.props.children}
